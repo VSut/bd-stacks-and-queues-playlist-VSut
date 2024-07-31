@@ -1,6 +1,10 @@
+import com.amazonaws.services.dynamodbv2.xspec.S;
+
+import java.util.LinkedList;
 
 public class Playlist {
 
+    LinkedList<Song> songs;
     /**
      * Constructor.
      */
@@ -14,7 +18,10 @@ public class Playlist {
      * @return The next Song in the playlist, or null if the playlist is empty.
      */
     public Song getNextSong() {
-        return null;
+        if(songs == null || songs.isEmpty()) {
+            return null;
+        }
+        return songs.remove();
     }
 
     /**
@@ -22,7 +29,10 @@ public class Playlist {
      * @param song the song to be added to the playlist.
      */
     public void addSong(Song song) {
-
+        if (songs == null) {
+            songs = new LinkedList<>();
+        }
+        songs.add(song);
     }
 
 }
